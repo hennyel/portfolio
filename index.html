@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Eniola | Graphic Designer</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<style>
+	:root {
+		--black: #000;
+		--dark-gray: #0a0a0a;
+		--accent-red: #c1121f;
+		--muted: #aaa;
+		--glass: rgba(255,255,255,0.04);
+		--line-color: rgba(255,255,255,0.06);
+		--glow1: rgba(193,18,31,0.08);
+		--glow2: rgba(193,18,31,0.06);
+	}
+
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+		background: radial-gradient(1200px 600px at 10% 10%, rgba(20,20,20,1), rgba(5,5,5,1));
+		color: #fff;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	/* Header */
+	header.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 1100;
+		background: linear-gradient(180deg, rgba(0,0,0,0.75), rgba(0,0,0,0.60));
+		border-bottom: 1px solid rgba(255,255,255,0.02);
+		backdrop-filter: blur(6px);
+	}
+
+	.nav-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 14px 20px;
+	}
+
+	.brand {
+		font-weight: 700;
+		font-family: 'Montserrat', sans-serif;
+		font-size: 1.25rem;
+		color: var(--accent-red);
+		letter-spacing: .6px;
+	}
+
+	nav.main-nav {
+		display: flex;
+		gap: 22px;
+		align-items: center;
+	}
+
+	nav.main-nav a {
+		color: #fff;
+		padding: 8px 10px;
+		border-radius: 6px;
+		font-weight: 500;
+		transition: all .22s ease;
+		font-size: .98rem;
+	}
+
+	nav.main-nav a:hover {
+		color: #000;
+		background: var(--accent-red);
+		box-shadow: 0 6px 28px rgba(193,18,31,0.12);
+		transform: translateY(-2px);
+	}
+
+	.hamburger {
+		display: none;
+		background: transparent;
+		border: none;
+		color: #fff;
+		font-size: 1.3rem;
+		cursor: pointer;
+	}
+
+	/* Mobile Sidebar */
+	.mobile-nav {
+		position: fixed;
+		inset: 0;
+		display: none;
+		pointer-events: none;
+		z-index: 1200;
+	}
+
+	.mobile-overlay {
+		position: absolute;
+		inset: 0;
+		background: rgba(0,0,0,0.6);
+		opacity: 0;
+		transition: opacity .25s ease;
+		pointer-events: none;
+	}
+
+	.mobile-drawer {
+		position: absolute;
+		left: -320px;
+		top: 0;
+		bottom: 0;
+		width: 280px;
+		background: linear-gradient(180deg,#070707,#111);
+		box-shadow: 8px 0 40px rgba(0,0,0,0.7);
+		padding: 20px;
+		transition: left .32s cubic-bezier(.2,.9,.2,1);
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+	}
+
+	.mobile-drawer a {
+		color: #fff;
+		padding: 10px 12px;
+		border-radius: 8px;
+		display: block;
+		font-weight: 600;
+	}
+
+	.mobile-drawer a:hover {
+		background: rgba(193,18,31,0.12);
+		color: var(--accent-red);
+		transform: translateX(6px);
+	}
+
+	.mobile-drawer .close-btn {
+		margin-left: auto;
+		background: transparent;
+		border: none;
+		color: #fff;
+		font-size: 1.2rem;
+		cursor: pointer;
+	}
+
+	.mobile-nav.open {
+		display: block;
+		pointer-events: auto;
+	}
+
+	.mobile-nav.open .mobile-overlay {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.mobile-nav.open .mobile-drawer {
+		left: 0;
+	}
+
+	/* Hero */
+	.hero {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 40px;
+		align-items: center;
+		min-height: 86vh;
+		padding: 60px 20px;
+		max-width: 1200px;
+		margin: 20px auto;
+		position: relative;
+		background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+		border-radius: 18px;
+		overflow: hidden;
+		box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+		grid-template-areas: "text" "image";
+	}
+
+	.hero::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background-image: 
+			linear-gradient(to right, var(--line-color) 1px, transparent 1px),
+			linear-gradient(to bottom, var(--line-color) 1px, transparent 1px);
+		background-size: 50px 50px;
+		pointer-events: none;
+		mix-blend-mode: overlay;
+	}
+
+	.hero-left {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.portrait {
+		width: 100%;
+		max-width: 480px;
+		border-radius: 16px;
+		overflow: hidden;
+		border: 6px solid rgba(255,255,255,0.02);
+		box-shadow: 0 18px 50px rgba(0,0,0,0.6);
+	}
+
+	.portrait img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.hero-right {
+		padding: 10px 10px 10px 30px;
+	}
+
+	.eyebrow {
+		color: var(--muted);
+		margin-bottom: 8px;
+		font-weight: 500;
+	}
+
+	.hero-right h1 {
+		font-size: clamp(2rem,4.2vw,3rem);
+		margin-bottom: 12px;
+		color: #fff;
+		font-family: 'Montserrat',sans-serif;
+	}
+
+	.hero-right h1 span {
+		color: var(--accent-red);
+	}
+
+	.hero-right h2 {
+		color: var(--muted);
+		font-weight: 500;
+		min-height: 28px;
+		margin-bottom: 18px;
+	}
+
+	.hero-right p {
+		color: #ddd;
+		margin-bottom: 22px;
+		max-width: 520px;
+	}
+
+	.hero-actions {
+		display: flex;
+		gap: 12px;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	.btn {
+		display: inline-block;
+		padding: 12px 18px;
+		border-radius: 9px;
+		font-weight: 700;
+		cursor: pointer;
+		transition: all .25s ease;
+	}
+
+	.btn-primary {
+		background: linear-gradient(90deg,var(--accent-red),#ff3c3c);
+		color: #fff;
+		border: none;
+		box-shadow: 0 8px 28px rgba(193,18,31,0.16);
+	}
+
+	.btn-outline {
+		background: transparent;
+		color: #fff;
+		border: 1px solid rgba(255,255,255,0.06);
+		box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+	}
+
+	/* Techs */
+	.techs {
+		display: flex;
+		justify-content: space-around;
+		padding: 14px;
+		gap: 12px;
+		flex-wrap: wrap;
+		background: rgba(255,255,255,0.02);
+		border-radius: 10px;
+		margin: 10px auto;
+		max-width: 1000px;
+	}
+
+	.techs p {
+		font-size: 16px;
+		cursor: pointer;
+		padding: 6px 12px;
+		border-radius: 10px;
+		transition: all .22s ease;
+		transform: scale(1.05);
+		background: rgba(193,18,31,0.06);
+		color: var(--accent-red);
+	}
+
+	.techs p:hover {
+		box-shadow: 0 4px 6px rgba(255,255,255,0.02);
+		color: white;
+	}
+
+	/* Services */
+	.services {
+		text-align: center;
+		margin-top: 100px;
+	}
+
+	.services .section-title {
+		font-size: 2rem;
+		color: #fff;
+		margin-bottom: 18px;
+	}
+
+	.services-row {
+		display: flex;
+		gap: 20px;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.service-card {
+		width: 260px;
+		height: 220px;
+		perspective: 1200px;
+	}
+
+	.service-inner {
+		width: 100%;
+		height: 100%;
+		transform-style: preserve-3d;
+		animation: autoFlip 9s infinite linear;
+	}
+
+	.service-front,
+	.service-back {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		border-radius: 12px;
+		backface-visibility: hidden;
+		padding: 18px;
+		box-shadow: 0 6px 22px rgba(0,0,0,0.25);
+	}
+
+	.service-front {
+		background: linear-gradient(180deg,#0e0e0e,#151515);
+		color: #fff;
+		border: 1px solid rgba(255,255,255,0.03);
+	}
+
+	.service-back {
+		background: #fff;
+		color: #121212;
+		transform: rotateY(180deg);
+		border: 1px solid rgba(0,0,0,0.06);
+		text-align: center;
+	}
+
+	.service-front i {
+		font-size: 26px;
+		color: var(--accent-red);
+		margin-bottom: 8px;
+	}
+
+	@keyframes autoFlip {
+		0%,28% {
+			transform: rotateY(0deg);
+		}
+		35%,63% {
+			transform: rotateY(180deg);
+		}
+		70%,100% {
+			transform: rotateY(360deg);
+		}
+	}
+
+	.service-card:hover .service-inner {
+		animation-play-state: running;
+	}
+
+	.center {
+		text-align: center;
+	}
+
+	/* Projects */
+	.projects-section {
+		padding: 50px 20px;
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		background-image: none;
+		min-height: 100vh;
+		margin-top: 100px;
+	}
+
+	.slideshow-container {
+		position: relative;
+		width: 100%;
+		max-width: 1100px;
+		margin: auto;
+		overflow: hidden;
+	}
+
+	.slideshow-wrapper {
+		display: flex;
+		gap: 15px;
+		transition: transform .5s ease-in-out;
+		will-change: transform;
+	}
+
+	.proj-card {
+		flex: 0 0 auto;
+		width: calc((100% - 30px) / 3);
+		box-sizing: border-box;
+		padding: 20px;
+		background: #111;
+		border: 1px solid rgba(255,255,255,0.04);
+		border-radius: 10px;
+		color: #fff;
+		box-shadow: 0 0 12px rgba(255,255,255,0.02);
+		text-align: center;
+		transition: all 0.4s ease;
+	}
+
+	.proj-card:hover {
+		transform: translateY(-5px) scale(1.03);
+		box-shadow: 0 0 20px rgba(193,18,31,0.08);
+		background: linear-gradient(180deg,#111,#141414);
+	}
+
+	.proj-card img {
+		width: 100%;
+		border-radius: 8px;
+		display: block;
+	}
+
+	.proj-card h3 {
+		margin: 15px 0 10px;
+		font-size: 20px;
+		color: #fff;
+	}
+
+	.proj-card p {
+		font-size: 14px;
+		color: #aaa;
+		margin-bottom: 15px;
+	}
+
+	.proj-btn {
+		display: inline-block;
+		padding: 8px 15px;
+		background: transparent;
+		border: 1px solid var(--accent-red);
+		color: var(--accent-red);
+		border-radius: 5px;
+		text-decoration: none;
+		font-size: 14px;
+		font-weight: bold;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		transition: all 0.3s ease-in-out;
+	}
+
+	.proj-btn:hover {
+		background: var(--accent-red);
+		color: #fff;
+		box-shadow: 0 0 12px rgba(193,18,31,0.12);
+	}
+
+	.arrow {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		background: rgba(0,0,0,.6);
+		color: #fff;
+		border: none;
+		padding: 10px;
+		cursor: pointer;
+		border-radius: 50%;
+		font-size: 20px;
+		z-index: 10;
+	}
+
+	.arrow.left {
+		left: 10px;
+	}
+
+	.arrow.right {
+		right: 10px;
+	}
+
+	.proj-tags {
+		margin-top: 10px;
+		display: flex;
+		gap: 8px;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.proj-tags span {
+		font-size: 12px;
+		padding: 3px 8px;
+		border-radius: 4px;
+		background: transparent;
+		border: 1px solid rgba(255,255,255,0.06);
+		color: #fff;
+		font-family: 'Fira Code', monospace;
+		transition: background 0.3s;
+	}
+
+	.proj-tags span:hover {
+		background: var(--accent-red);
+		color: #fff;
+	}
+
+	/* Skills */
+	.skills-section {
+		padding: 40px 20px;
+		background: transparent;
+	}
+
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 20px;
+		max-width: 1000px;
+		margin: 0 auto;
+		align-items: start;
+	}
+
+	.skill {
+		background: linear-gradient(180deg,#0d0d0d,#111);
+		padding: 18px;
+		border-radius: 12px;
+		border: 1px solid rgba(255,255,255,0.02);
+		box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+	}
+
+	.skill h4 {
+		color: #fff;
+		margin-bottom: 8px;
+		font-size: 1.05rem;
+	}
+
+	.progress-bar {
+		width: 100%;
+		height: 14px;
+		background: #0b0b0b;
+		border-radius: 8px;
+		overflow: hidden;
+		border: 1px solid rgba(255,255,255,0.02);
+	}
+
+	.progress {
+		height: 100%;
+		width: 0;
+		background: var(--accent-red);
+		transition: width 1.8s ease;
+	}
+
+	@media (max-width:900px) {
+		.skills-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* Testimonials */
+	.testimonials {
+		padding: 50px 20px;
+		background: rgba(255,255,255,0.01);
+		margin-top: 100px;
+		min-height: 60vh;
+	}
+
+	.testimonials .testimonial-container {
+		max-width: 760px;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.testimonial-slide {
+		display: none;
+		background: linear-gradient(180deg,#0d0d0d,#111);
+		padding: 20px;
+		border-radius: 10px;
+	}
+
+	.testimonial-slide.active {
+		display: block;
+	}
+
+	.testimonial-slide p {
+		color: #ddd;
+		font-style: italic;
+	}
+
+	.testimonial-slide h4 {
+		color: var(--accent-red);
+		margin-top: 12px;
+	}
+
+	/* Contact */
+	.contact-container {
+		max-width: 1100px;
+		margin: 0 auto;
+		min-height: 100dvh;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 40px;
+		background: rgba(255,255,255,.01);
+		border-radius: 20px;
+		box-shadow: 0 8px 32px rgba(0,0,0,.2);
+		padding: 40px;
+		margin-top: 100px;
+	}
+
+	.contact-form {
+		flex: 1 1 350px;
+		min-width: 300px;
+	}
+
+	.contact-form h2 {
+		color: #fff;
+		font-size: 2.2em;
+		margin-bottom: 18px;
+	}
+
+	.input-group {
+		margin-bottom: 18px;
+	}
+
+	.contact-form input,
+	.contact-form textarea {
+		width: 100%;
+		padding: 12px;
+		border-radius: 8px;
+		border: none;
+		background: #111;
+		color: #fff;
+		font-size: 1em;
+		resize: vertical;
+		margin-top: 10px;
+	}
+
+	.contact-form textarea {
+		min-height: 100px;
+	}
+
+	.contact-btn {
+		width: 100%;
+		padding: 12px;
+		border-radius: 8px;
+		border: none;
+		background: var(--accent-red);
+		color: #fff;
+		font-size: 1.1em;
+		font-weight: bold;
+		cursor: pointer;
+		transition: background .3s;
+		margin-top: 6px;
+	}
+
+	.contact-btn:hover {
+		background: #a10f16;
+	}
+
+	#form-message {
+		margin-top: 15px;
+		font-size: 1em;
+		display: none;
+	}
+
+	.contact-image {
+		flex: 1 1 350px;
+		min-width: 300px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.contact-image img {
+		width: 80%;
+		height: 70%;
+		object-fit: cover;
+		border-radius: 18px;
+		box-shadow: 0 4px 24px rgba(0,0,0,.3);
+		background: #fff;
+	}
+
+	footer {
+		padding: 18px;
+		text-align: center;
+		color: #999;
+		margin-top: 40px;
+	}
+	/* Responsive */
+	@media (max-width:900px) {
+		.hero {
+			grid-template-columns: 1fr;
+			padding: 30px 18px;
+			gap: 24px;
+		}
+		.hero-left {
+			order: 2;
+		}
+		.hero-right {
+			order: 1;
+			padding-left: 0;
+		}
+		nav.main-nav {
+			display: none;
+		}
+		.hamburger {
+			display: inline-block;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.proj-card {
+			width: 100%;
+		}
+		.hero {
+			display: flex;
+			flex-direction: column-reverse;
+		}
+	}
+
+	@media (min-width: 601px) and (max-width: 900px) {
+		.proj-card {
+			width: calc((100% - 15px)/2);
+		}
+	}
+
+	@media (max-width:480px) {
+		.nav-container {
+			padding: 10px;
+		}
+		.hamburger {
+			font-size: 1.25rem;
+		}
+		nav.main-nav a {
+			display: none;
+		}
+	}
+</style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="brand">Eniola Oyebanji</div>
+      </div>
+      <nav class="main-nav" role="navigation" aria-label="Main navigation">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MOBILE SIDEBAR -->
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <aside class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile menu">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <strong style="color:var(--accent-red);font-size:1.1rem">Eniola</strong>
+        <button class="close-btn" id="mobileCloseBtn" aria-label="Close menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <nav style="margin-top:10px;display:flex;flex-direction:column;gap:6px;">
+        <a href="#hero" class="mobile-link">Home</a>
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#services" class="mobile-link">Services</a>
+        <a href="#projects" class="mobile-link">Projects</a>
+        <a href="#skills" class="mobile-link">Skills</a>
+        <a href="#testimonials" class="mobile-link">Testimonials</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+      </nav>
+    </aside>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-left">
+      <div class="portrait">
+        <img src="img/eni.png" alt="Eniola portrait">
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="eyebrow">Graphic Designer • Brand Identity • Illustrator</div>
+      <h1>Hi, I'm <span>Eniola</span></h1>
+      <h2 id="head-type"></h2>
+      <p>
+        I create bold and memorable brand visuals — logos, packaging, illustrations, and social assets.
+        I blend concept, color and composition to tell clear visual stories.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#projects">See My Work</a>
+        <a class="btn btn-outline" href="#contact">Hire Me</a>
+        <button id="work-together-btn" class="btn btn-outline" style="border-color:var(--accent-red); color:var(--accent-red)">
+          <i class="fa-regular fa-envelope"></i> Request Project
+        </button>
+      </div>
+      <div id="work-together-message" style="margin-top:12px; color:var(--accent-red); display:none;"></div>
+    </div>
+  </section>
+
+  <!-- TECHS -->
+  <section style="max-width:1200px;margin:18px auto;">
+    <div class="techs" aria-hidden="false">
+      <p>Photoshop</p>
+      <p>Illustrator</p>
+      <p>CorelDRAW</p>
+      <p>Figma</p>
+      <p>Canva</p>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="services">
+    <h2 class="section-title center">My Services</h2>
+    <div class="services-row">
+      <div class="service-card">
+        <div class="service-inner">
+          <div class="service-front">
+            <i class="fas fa-pen-nib"></i>
+            <h3>Logo Design</h3>
+          </div>
+          <div class="service-back">
+            <p>Unique logos & mark systems that scale across touchpoints.</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-inner">
+          <div class="service-front">
+            <i class="fas fa-bullhorn"></i>
+            <h3>Branding</h3>
+          </div>
+          <div class="service-back">
+            <p>Full brand kits — typography, color and usage guidelines.</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-inner">
+          <div class="service-front">
+            <i class="fas fa-paint-brush"></i>
+            <h3>Illustration</h3>
+          </div>
+          <div class="service-back">
+            <p>Custom digital illustrations for editorial & campaigns.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="slide-up-section" style="padding-top:100px;">
+    <h2 class="center" style="color:var(--accent-red); margin-bottom:14px;">About</h2>
+    <div style="max-width:1000px; margin:0 auto; display:flex; gap:28px; align-items:center; flex-wrap:wrap; padding:12px;">
+      <div style="flex:1 1 360px; min-width:260px;">
+        <img src="img/eni2_LE.png" alt="Eniola portrait" style="width:100%; border-radius:12px; border:4px solid rgba(255,255,255,0.02)">
+      </div>
+      <div style="flex:1 1 520px; min-width:260px">
+        <h3 style="color:#fff; margin-bottom:8px">Hello — I'm Eniola</h3>
+        <p style="color:#d4d4d4; margin-bottom:10px">
+          I help brands and creatives communicate with clarity and impact through visual identity, illustration, and marketing design.
+          My work blends color, composition, and typography to create bold, memorable visuals that connect with audiences and bring ideas to life.
+          Let’s make your brand stand out.
+        </p>
+        <p style="color:var(--muted); margin-bottom:12px">Available for freelance & collaboration.</p>
+        <a href="#contact" class="btn btn-primary">Work With Me</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="projects-section">
+    <h2 style="color:var(--accent-red); margin-bottom:18px">Featured Projects</h2>
+    <div class="slideshow-container">
+      <button class="arrow left" aria-label="Previous">&#10094;</button>
+      <div class="slideshow-wrapper">
+        <div class="proj-card">
+          <img src="img/project1.jpg" alt="Project 1">
+          <h3>Fashion Brand Identity</h3>
+          <p>Logo, packaging & social templates for a boutique label.</p>
+          <a class="proj-btn" href="#">View</a>
+        </div>
+        <div class="proj-card">
+          <img src="img/project2.jpg" alt="Project 2">
+          <h3>Festival Poster Series</h3>
+          <p>Poster & promotional assets for a regional festival.</p>
+          <a class="proj-btn" href="#">View</a>
+        </div>
+        <div class="proj-card">
+          <img src="img/project3.jpg" alt="Project 3">
+          <h3>Editorial Illustration</h3>
+          <p>Custom illustration series for a magazine cover.</p>
+          <a class="proj-btn" href="#">View</a>
+        </div>
+        <div class="proj-card">
+          <img src="img/project4.jpg" alt="Project 4">
+          <h3>Editorial Illustration</h3>
+          <p>Custom illustration series for a magazine cover.</p>
+          <a class="proj-btn" href="#">View</a>
+        </div>
+        <div class="proj-card">
+          <img src="img/project5.jpg" alt="Project 5">
+          <h3>Editorial Illustration</h3>
+          <p>Custom illustration series for a magazine cover.</p>
+          <a class="proj-btn" href="#">View</a>
+        </div>
+        <div class="proj-card">
+          <img src="img/project6.jpg" alt="Project 6">
+          <h3>Editorial Illustration</h3>
+          <p>Custom illustration series for a magazine cover.</p>
+          <a class="proj-btn" href="#">View</a>
+        </div>
+      </div>
+      <button class="arrow right" aria-label="Next">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="skills-section">
+    <h2 class="section-title center">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill">
+        <h4>Adobe Photoshop</h4>
+        <div class="progress-bar"><div class="progress" data-progress="95"></div></div>
+      </div>
+      <div class="skill">
+        <h4>Adobe Illustrator</h4>
+        <div class="progress-bar"><div class="progress" data-progress="90"></div></div>
+      </div>
+      <div class="skill">
+        <h4>Figma</h4>
+        <div class="progress-bar"><div class="progress" data-progress="85"></div></div>
+      </div>
+      <div class="skill">
+        <h4>Web Design</h4>
+        <div class="progress-bar"><div class="progress" data-progress="80"></div></div>
+      </div>
+      <div class="skill">
+        <h4>Branding</h4>
+        <div class="progress-bar"><div class="progress" data-progress="75"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="testimonials">
+    <h2 class="center" style="color:var(--accent-red); margin-bottom:18px">Testimonials</h2>
+    <div class="testimonial-container">
+      <div class="testimonial-slide active">
+        <p>"Eniola took our brand to another level — the visuals were stunning."</p>
+        <h4>- Client A</h4>
+      </div>
+      <div class="testimonial-slide">
+        <p>"Fast, creative and professional. We loved the final deliverables."</p>
+        <h4>- Client B</h4>
+      </div>
+      <div class="testimonial-slide">
+        <p>"A joy to work with — highly recommended for branding work."</p>
+        <h4>- Client C</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-container">
+      <div class="contact-form">
+        <h2 class="center" style="color:var(--accent-red); margin-bottom:18px">Contact</h2>
+        <h3 style="color:#fff; margin-bottom:8px">Let's talk</h3>
+        <form id="emailForm">
+          <input type="text" name="from_name" placeholder="Your name" required>
+          <input type="email" name="email_id" placeholder="Your email" required>
+		   <input type="number" name="tel_id" placeholder="Phone Number" required>
+          <textarea name="message" rows="5" placeholder="Your message" required></textarea>
+          <button class="contact-btn" type="submit">Send Message</button>
+          <div id="form-message"></div>
+        </form>
+      </div>
+      <div class="contact-image">
+        <img src="img/contacts.jpeg" alt="Contact">
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 <strong style="color:var(--accent-red)">Eniola</strong>. All rights reserved.</p>
+  </footer>
+
+  <!-- EmailJS lib -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    // Mobile sidebar
+    (function () {
+      const hamburger = document.getElementById('hamburgerBtn');
+      const mobileNav = document.getElementById('mobileNav');
+      const overlay = document.getElementById('mobileOverlay');
+      const closeBtn = document.getElementById('mobileCloseBtn');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+      function openMobile() {
+        mobileNav.classList.add('open');
+        mobileNav.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMobile() {
+        mobileNav.classList.remove('open');
+        mobileNav.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+      if (hamburger) hamburger.addEventListener('click', openMobile);
+      if (overlay) overlay.addEventListener('click', closeMobile);
+      if (closeBtn) closeBtn.addEventListener('click', closeMobile);
+      mobileLinks.forEach(a => a.addEventListener('click', closeMobile));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobile(); });
+    })();
+
+    // Typing Effects & Section Animation
+    document.addEventListener("DOMContentLoaded", function () {
+      // Hero typing effect
+      const texts1 = [
+        "Branding • Illustration • Visual Design",
+        "Creative Design Systems",
+        "Digital & Print Artwork",
+        "Visual Storytelling"
+      ];
+      let count1 = 0, index1 = 0, currentText1 = "", letter1 = "";
+      function type1() {
+        if (count1 === texts1.length) count1 = 0;
+        currentText1 = texts1[count1];
+        letter1 = currentText1.slice(0, ++index1);
+        const headEl = document.getElementById("head-type");
+        if (headEl) headEl.textContent = letter1;
+        if (letter1.length === currentText1.length) {
+          count1++; index1 = 0; setTimeout(type1, 1000);
+        } else {
+          setTimeout(type1, 100);
+        }
+      }
+      if (document.getElementById('head-type')) type1();
+
+      // About slide-up sections
+      const slideUpSections = document.querySelectorAll('.slide-up-section');
+      if (slideUpSections.length) {
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        slideUpSections.forEach(s => observer.observe(s));
+      }
+    });
+
+    // Projects slideshow
+    (function () {
+      const wrapper = document.querySelector(".slideshow-wrapper");
+      const slides = [...document.querySelectorAll(".proj-card")];
+      const prevBtn = document.querySelector(".arrow.left");
+      const nextBtn = document.querySelector(".arrow.right");
+      const container = document.querySelector(".slideshow-container");
+      if (!wrapper || slides.length === 0 || !prevBtn || !nextBtn || !container) return;
+      let index = 0;
+      function perView() {
+        if (window.innerWidth <= 600) return 1;
+        if (window.innerWidth <= 900) return 2;
+        return 3;
+      }
+      function stepSize() {
+        const style = getComputedStyle(wrapper);
+        const gap = parseFloat(style.columnGap || style.gap || 0);
+        const cardW = slides[0].getBoundingClientRect().width;
+        return cardW + (gap || 0);
+      }
+      function maxIndex() {
+        return Math.max(0, slides.length - perView());
+      }
+      function goTo(i, animate = true) {
+        index = Math.min(Math.max(i, 0), maxIndex());
+        wrapper.style.transition = animate ? "transform .5s ease-in-out" : "none";
+        wrapper.style.transform = `translateX(${-index * stepSize()}px)`;
+      }
+      function nextSlide() {
+        if (index >= maxIndex()) {
+          wrapper.style.transition = "none";
+          index = 0;
+          wrapper.style.transform = "translateX(0px)";
+          requestAnimationFrame(() => requestAnimationFrame(() => goTo(0, true)));
+        } else {
+          goTo(index + 1, true);
+        }
+      }
+      function prevSlide() {
+        if (index <= 0) {
+          index = maxIndex();
+          wrapper.style.transition = "none";
+          wrapper.style.transform = `translateX(${-index * stepSize()}px)`;
+          requestAnimationFrame(() => requestAnimationFrame(() => goTo(index, true)));
+        } else {
+          goTo(index - 1, true);
+        }
+      }
+      nextBtn.addEventListener("click", nextSlide);
+      prevBtn.addEventListener("click", prevSlide);
+      let auto = setInterval(nextSlide, 3000);
+      container.addEventListener("mouseenter", () => clearInterval(auto));
+      container.addEventListener("mouseleave", () => auto = setInterval(nextSlide, 3000));
+      window.addEventListener("resize", () => goTo(index, false));
+      goTo(0, false);
+    })();
+
+    // Request project button
+    (function () {
+      const btn = document.getElementById('work-together-btn');
+      const msg = document.getElementById('work-together-message');
+      if (btn && msg) {
+        btn.addEventListener('click', function () {
+          msg.style.display = 'block';
+          msg.style.color = 'var(--accent-red)';
+          msg.textContent = 'Sending request...';
+          if (window.emailjs) {
+            emailjs.send('service_4xlu4mq', 'template_30bz5fl', {
+              from_name: 'Portfolio Visitor',
+              email_id: 'noreply@yourdomain.com',
+              message: 'Someone clicked "Request Project" on your portfolio. Please contact them!'
+            }).then(function () {
+              msg.style.color = '#0f0';
+              msg.textContent = 'Request sent! She will be alerted on her email.';
+              setTimeout(() => { msg.style.display = 'none'; }, 3000);
+            }, function () {
+              msg.style.color = '#f00';
+              msg.textContent = 'Failed to send request. Please try again.';
+              setTimeout(() => { msg.style.display = 'none'; }, 3000);
+            });
+          } else {
+            msg.style.color = '#f00';
+            msg.textContent = 'Email service not available.';
+            setTimeout(() => { msg.style.display = 'none'; }, 3000);
+          }
+        });
+      }
+    })();
+
+    // Progress bars fill on scroll
+    window.addEventListener("scroll", () => {
+      document.querySelectorAll(".progress").forEach(bar => {
+        const rect = bar.getBoundingClientRect();
+        if (rect.top < window.innerHeight && bar.style.width === "") {
+          bar.style.width = bar.getAttribute("data-progress") + "%";
+        }
+      });
+    });
+
+    // Testimonials auto slider
+    (function () {
+      let currentTestimonial = 0;
+      const testimonials = document.querySelectorAll(".testimonial-slide");
+      function showTestimonial(index) {
+        testimonials.forEach((slide, i) => {
+          slide.classList.remove("active");
+          if (i === index) slide.classList.add("active");
+        });
+      }
+      function nextTestimonial() {
+        if (testimonials.length === 0) return;
+        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        showTestimonial(currentTestimonial);
+      }
+      setInterval(nextTestimonial, 4000);
+    })();
+
+    // EmailJS contact form
+    (function () {
+      if (window.emailjs) emailjs.init("LOB8ILBXSKSsb6fRR");
+      const form = document.getElementById('emailForm');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const msg = document.getElementById('form-message');
+        if (msg) { msg.style.color = '#fff'; msg.style.display = 'block'; msg.textContent = 'submitting.....'; }
+        emailjs.sendForm('service_4xlu4mq', 'template_30bz5fl', this)
+          .then(function () {
+            if (msg) {
+              msg.style.color = '#0f0';
+              msg.textContent = 'Message sent successfully!';
+              setTimeout(() => { msg.textContent = ''; msg.style.display = 'none'; }, 3000);
+            }
+            form.reset();
+          }, function () {
+            if (msg) {
+              msg.style.color = '#f00';
+              msg.textContent = 'Failed to send message. Please try again.';
+              setTimeout(() => { msg.textContent = ''; msg.style.display = 'none'; }, 3000);
+            }
+          });
+      });
+    })();
+  </script>
+</body>
+</html>
